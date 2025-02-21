@@ -1,0 +1,13 @@
+[project]
+name = "python-template"
+version = "0.1.0"
+description = "A template for a Python project"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["ruff>=0.9.6"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+lint.select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
+
