@@ -11,15 +11,4 @@ __pycache__/
 .venv
 uv.lock
 
-# old files
-old/
-libs/
-
-# data files
-src/hotel_data.json
-
-# node.js/npm files
-node_modules/
-package-lock.json
-
 
