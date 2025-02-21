@@ -1,0 +1,39 @@
+version: "3"
+
+tasks:
+  setup:
+    desc: Install all required tools and dependencies
+    cmds:
+      # Check if UV is installed, install if not
+      - command -v uv >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
+      # Initialize UV if not already initialized
+      - test -f pyproject.toml || uv init
+      # Install all dependencies (including Modal)
+      - uv sync
+      # Start the venv
+      - uv venv
+
+  local-dev:
+    desc: Start local development server
+    cmds:
+      - uv run uvicorn src.factory:fastapi_app --reload
+
+  dev:
+    desc: Serve the application
+    cmds:
+      - uv run modal serve src/factory.py
+
+  lint:
+    desc: Lint the code using ruff
+    cmds:
+      - uv run ruff check .
+
+  logs:
+    desc: View the logs of the application
+    cmds:
+      - uv run modal app logs ap-6rZd2BhZROXmKfbgbFD1dk
+
+  deploy:
+    desc: Deploy the application
+    cmds:
+      - uv run modal deploy src/factory.py
